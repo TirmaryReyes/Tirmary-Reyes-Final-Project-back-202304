@@ -1,13 +1,12 @@
 import { type Request } from "express";
 export interface UserCredentials {
-  name: string;
   username: string;
   password: string;
 }
 
-export interface UserCredentialsStructure extends UserCredentials {
+export type UserCredentialsStructure = {
   _id: string;
-}
+} & UserCredentials;
 
 export type CustomRequest = Request<
   Record<string, unknown>,
