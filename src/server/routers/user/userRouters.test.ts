@@ -30,6 +30,11 @@ const mockUser: UserCredentials = {
   password: "pedro",
 };
 
+const invalidUser: UserCredentials = {
+  username: "pedor",
+  password: "pedro",
+};
+
 const mockUserHashed: UserCredentials = {
   username: "pedro",
   password: "$2y$10$iEWfJjSdn7FdK7w24ASOweMUCAQ3sDFgRlZQGtxV00I7Ss2yLVRku",
@@ -46,15 +51,30 @@ describe("Given a POST '/user/login endpoint'", () => {
     test("Then it should response with a status 200 and a token", async () => {
       const expectedStatus = 200;
 
-      const response: { body: { token: string } } = await request(app)
+      const res: { body: { token: string } } = await request(app)
         .post(`${paths.user}${paths.login}`)
         .send(mockUser)
         .expect(expectedStatus);
 
-      const payload = jwt.verify(response.body.token, process.env.JWT_SECRET!);
+      const payload = jwt.verify(res.body.token, process.env.JWT_SECRET!);
       const userId = payload.sub as string;
 
       expect(userId).toBe(newUser._id.toString());
+    });
+  });
+
+  describe("When it receives an invalid username 'pedor'", () => {
+    test("Then it should response with a status code 401 and a message 'Wrong credentials'", async () => {
+      const expectedStatus = 401;
+
+      const expectedMessage = "Wrong credentials";
+
+      const res: { body: { message: string } } = await request(app)
+        .post(`${paths.user}${paths.login}`)
+        .send(invalidUser)
+        .expect(expectedStatus);
+
+      expect(res.body.message).toBe(expectedMessage);
     });
   });
 });
