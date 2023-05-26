@@ -2,11 +2,27 @@ import "./loadEnvironment.js";
 import createDebug from "debug";
 import { app } from "./server/index.js";
 import chalk from "chalk";
+import connectToDatabase from "./database/connectToDatabase.js";
 
 export const debug = createDebug("sandRose-api:root");
 
-export const port = process.env.PORT ?? 4000;
+const port = process.env.PORT ?? 4000;
+
+const mongoDbConnection = process.env.MONGODB_CONNECTION;
+
+if (!mongoDbConnection) {
+  debug(chalk.red("Missing environmental variables. Exiting..."));
+  process.exit(1);
+}
 
 app.listen(port, () => {
-  debug(chalk.blue(`listening on http://localhost:${port}`));
+  debug(chalk.green(`Listening on http://localhost:${port}`));
 });
+
+try {
+  await connectToDatabase(mongoDbConnection);
+
+  debug(chalk.blue("Connected to database"));
+} catch (error: unknown) {
+  debug(`Error connecting to database: ${chalk.red((error as Error).message)}`);
+}
