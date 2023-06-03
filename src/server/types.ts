@@ -13,8 +13,24 @@ export interface UserDbStructure extends UserCredentials {
   _id: Types.ObjectId;
 }
 
-export type CustomRequest = Request<
+export type UserCredentialsRequest = Request<
   Record<string, unknown>,
   Record<string, unknown>,
   UserCredentials
 >;
+
+export interface PlantStateStructure {
+  _id: Types.ObjectId;
+  name: string;
+  urlImage: string;
+  type: string;
+  size: string;
+  hasFlowers: boolean;
+  environment: string;
+  user: Types.ObjectId;
+  description: string;
+}
+
+export interface CustomRequest extends Request {
+  userId: string;
+}
