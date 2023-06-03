@@ -1,7 +1,6 @@
 import "../../../loadEnvironment.js";
 import createDebug from "debug";
 import { type NextFunction, type Request, type Response } from "express";
-import CustomError from "../../../CustomError/CustomError";
 import Event from "../../../database/models/Plant.js";
 
 const debug = createDebug(
@@ -15,7 +14,7 @@ const getPlants = async (req: Request, res: Response, next: NextFunction) => {
   } catch (error) {
     error.message = "Database error connection";
     debug(error);
-    next(CustomError);
+    next(error);
   }
 };
 

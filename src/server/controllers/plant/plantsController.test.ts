@@ -1,4 +1,4 @@
-import { type NextFunction, type Response } from "express";
+import { type NextFunction, type Response, type Request } from "express";
 import Plant from "../../../database/models/Plant.js";
 import getPlants from "./plantsController.js";
 import { type CustomRequest } from "../../types.js";
@@ -28,6 +28,21 @@ describe("Given a getPlant controller", () => {
       );
 
       expect(res.status).toHaveBeenCalledWith(expectedStatus);
+    });
+  });
+
+  describe("When it receives a next fuction and a rejected error", () => {
+    test("Then it should call that next function with that error", async () => {
+      const expectedError = new Error("Database error connection");
+
+      Plant.find = jest.fn().mockReturnValue({
+        limit: jest.fn().mockReturnThis(),
+        exec: jest.fn().mockRejectedValue(expectedError),
+      });
+
+      await getPlants(req as Request, res as Response, next as NextFunction);
+
+      expect(next).toHaveBeenCalledWith(expectedError);
     });
   });
 });
