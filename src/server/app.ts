@@ -1,15 +1,16 @@
+import "../loadEnvironment.js";
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import notFoundError from "./middlewares/notFoundErrorMiddleware/notFoundErrorMiddleware.js";
 import generalError from "./middlewares/generalError/generalError.js";
-import pingController from "./controllers/pingController/pingController.js";
+import pingController from "./controllers/ping/pingController.js";
 import paths from "./utils/paths.js";
 import userRouters from "./routers/user/userRouters.js";
 
 export const app = express();
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS;
+const allowedOrigins = process.env.ALLOWED_ORIGINS_DEV;
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
