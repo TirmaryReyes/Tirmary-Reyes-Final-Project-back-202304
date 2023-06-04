@@ -22,7 +22,7 @@ export type UserCredentialsRequest = Request<
 export interface PlantStateStructure {
   _id: Types.ObjectId;
   name: string;
-  urlImage: string;
+  image: string;
   type: string;
   size: string;
   hasFlowers: boolean;

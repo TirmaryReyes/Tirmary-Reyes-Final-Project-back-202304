@@ -2,7 +2,7 @@ import { type NextFunction, type Response, type Request } from "express";
 import Plant from "../../../database/models/Plant.js";
 import getPlants from "./plantsController.js";
 import { type CustomRequest } from "../../types.js";
-import { plantMock } from "../../../mocks/plantsMocks.js";
+import { plantsMocks } from "../../../mocks/plantsMocks.js";
 
 describe("Given a getPlant controller", () => {
   const req = {};
@@ -15,7 +15,7 @@ describe("Given a getPlant controller", () => {
   describe("When it recevies a request with a userId and a response", () => {
     Plant.find = jest.fn().mockReturnValue({
       limit: jest.fn().mockReturnThis(),
-      exec: jest.fn().mockResolvedValue(plantMock),
+      exec: jest.fn().mockResolvedValue(plantsMocks),
     });
 
     test("Then it should call the response status method with '200'", async () => {
