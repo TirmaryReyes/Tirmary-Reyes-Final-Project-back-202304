@@ -7,6 +7,8 @@ import generalError from "./middlewares/generalError/generalError.js";
 import pingController from "./controllers/ping/pingController.js";
 import paths from "./utils/paths.js";
 import userRouters from "./routers/user/userRouters.js";
+import { auth } from "./middlewares/authMiddleware/authMiddleware.js";
+import plantsRouter from "./routers/user/plants/plantsRouter.js";
 
 export const app = express();
 
@@ -30,6 +32,8 @@ app.use(express.json());
 app.get(paths.ping, pingController);
 
 app.use(paths.user, userRouters);
+
+app.use(paths.plants, auth, plantsRouter);
 
 app.use(notFoundError);
 

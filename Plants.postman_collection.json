@@ -1,0 +1,61 @@
+{
+  "info": {
+    "_postman_id": "b9ce187d-2318-45d2-a9e2-840ce118b3b0",
+    "name": "Plants",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27030864"
+  },
+  "item": [
+    {
+      "name": "http://localhost:4000/user/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/user/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["user", "login"]
+        },
+        "description": "Endpoint user login"
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/plants",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwODM2NjBjYTFmOTg5NzU4MzBiMGIiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU4OTUzODJ9.gO4SppkVY6qPZNBSVlwYwAVB_aVyL-y7vVClIy1fNRs",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/plants",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["plants"]
+        },
+        "description": "Endpoint get plants "
+      },
+      "response": []
+    }
+  ]
+}
