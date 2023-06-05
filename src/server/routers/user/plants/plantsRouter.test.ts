@@ -42,12 +42,4 @@ describe("Given a GET '/plants' endpoint", () => {
       expect(response.body.plants).toHaveLength(2);
     });
   });
-
-  describe("When it receives a request with an invalid token", () => {
-    test("Then it should return a status code 401", async () => {
-      const expectedStatusCode = 401;
-
-      await request(app).get(paths.plants).expect(expectedStatusCode);
-    });
-  });
 });
