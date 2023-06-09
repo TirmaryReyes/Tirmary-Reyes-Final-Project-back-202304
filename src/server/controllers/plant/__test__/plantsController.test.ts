@@ -1,8 +1,8 @@
 import { type NextFunction, type Response, type Request } from "express";
-import Plant from "../../../database/models/Plant.js";
-import getPlants from "./plantsController.js";
-import { type CustomRequest } from "../../types.js";
-import { plantsMocks } from "../../../mocks/plantsMocks.js";
+import Plant from "../../../../database/models/Plant.js";
+import { type CustomRequest } from "../../../types.js";
+import { plantsMocks } from "../../../../mocks/plantsMocks.js";
+import { getPlants } from "../plantsController.js";
 
 describe("Given a getPlant controller", () => {
   const req = {};

@@ -43,3 +43,24 @@ describe("Given a GET '/plants' endpoint", () => {
     });
   });
 });
+
+describe("Given a DELETE '/:id endpoint'", () => {
+  beforeEach(async () => {
+    await Plant.create(plantsMocks);
+  });
+
+  describe("When it receives a valid id is included in the request", () => {
+    test("Then it should respond with the method's status code set to '200' and the method's JSON containing the message 'Plant removed'", async () => {
+      const expectedStatusCode = 200;
+      const expectedMessage = "Plant removed";
+
+      const plant = await Plant.find().exec();
+      const response = await request(app)
+        .delete(`/plants/${plant[0]._id.toString()}`)
+        .set("Authorization", `Bearer ${tokenMock}`)
+        .expect(expectedStatusCode);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});

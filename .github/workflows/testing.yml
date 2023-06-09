@@ -16,3 +16,9 @@ jobs:
 
       - name: 🧪 Testing
         run: npm test
+
+        env:
+          MONGODB_CONNECTION: ${{ secrets.MONGODB_CONNECTION }}
+          ALLOWED_ORIGINS_DEV: ${{secrets.ALLOWED_ORIGINS_DEV}}
+          ALLOWED_ORIGINS_PROD: ${{secrets.ALLOWED_ORIGINS_PROD}}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
