@@ -1,9 +1,9 @@
 import { Router } from "express";
+import { auth } from "../../../middlewares/authMiddleware/authMiddleware";
 import {
   deletePlant,
   getPlants,
-} from "../../../controllers/plant/plantsController.js";
-import { auth } from "../../../middlewares/authMiddleware/authMiddleware.js";
+} from "../../../controllers/plant/plantsController";
 
 const plantsRouter = Router();
 
