@@ -33,4 +33,5 @@ export interface PlantStateStructure {
 
 export interface CustomRequest extends Request {
   userId: string;
+  body: PlantStateStructure;
 }
