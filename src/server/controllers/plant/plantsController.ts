@@ -4,6 +4,7 @@ import { type NextFunction, type Request, type Response } from "express";
 import Plant from "../../../database/models/Plant.js";
 import CustomError from "../../../CustomError/CustomError.js";
 import { type CustomRequest } from "../../types.js";
+import { Types } from "mongoose";
 
 const debug = createDebug(
   "sandRose-api:server:controllers:plant:plantsController.js"
@@ -41,6 +42,30 @@ export const deletePlant = async (
     }
 
     res.status(200).json({ message: "Plant removed" });
+  } catch (error: unknown) {
+    next(error);
+  }
+};
+
+export const addPlants = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  const { userId, body } = req;
+
+  try {
+    const newPlant = await Plant.create({
+      ...body,
+      user: new Types.ObjectId(userId),
+    });
+
+    if (!newPlant) {
+      const error = new CustomError(400, "Bad Request");
+      throw error;
+    }
+
+    res.status(201).json({ plant: newPlant });
   } catch (error: unknown) {
     next(error);
   }

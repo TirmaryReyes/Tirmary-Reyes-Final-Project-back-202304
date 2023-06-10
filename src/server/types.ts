@@ -33,4 +33,18 @@ export interface PlantStateStructure {
 
 export interface CustomRequest extends Request {
   userId: string;
+  params: {
+    idPlant: string;
+  };
+  body: PlantStructure;
+}
+
+export interface PlantStructure {
+  name: string;
+  image: string;
+  type: string;
+  size: string;
+  hasFlowers: boolean;
+  environment: string;
+  description: string;
 }
