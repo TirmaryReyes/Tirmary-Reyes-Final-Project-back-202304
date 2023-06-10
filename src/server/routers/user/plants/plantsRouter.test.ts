@@ -54,9 +54,8 @@ describe("Given a DELETE '/:id endpoint'", () => {
       const expectedStatusCode = 200;
       const expectedMessage = "Plant removed";
 
-      const plant = await Plant.find().exec();
       const response = await request(app)
-        .delete(`/plants/${plant[0]._id.toString()}`)
+        .delete(`/plants/${plantsMocks[0]._id.toString()}`)
         .set("Authorization", `Bearer ${tokenMock}`)
         .expect(expectedStatusCode);
 

@@ -44,7 +44,7 @@ describe("Given a deletePlant controller", () => {
   describe("When it receives a request with an invalid plant id", () => {
     test("Then it should call the next function with the message 'Plant not found'", async () => {
       const req: Partial<CustomRequest> = {
-        params: { id: "5" },
+        params: { idPlant: "5" },
       };
 
       const error = new CustomError(404, "Plant not found");

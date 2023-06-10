@@ -65,7 +65,7 @@ export const addPlants = async (
       throw error;
     }
 
-    res.status(201).json({ newPlant });
+    res.status(201).json({ plant: newPlant });
   } catch (error: unknown) {
     next(error);
   }
