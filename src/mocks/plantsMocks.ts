@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { type PlantStateStructure } from "../server/types";
+import { type PlantStateStructure, type PlantStructure } from "../server/types";
 
 export const plantsMocks: PlantStateStructure[] = [
   {
@@ -28,15 +28,13 @@ export const plantsMocks: PlantStateStructure[] = [
   },
 ];
 
-export const plantAddedMock: PlantStateStructure = {
-  _id: new Types.ObjectId(),
+export const plantAddedMock: PlantStructure = {
   name: "Canna indica",
   image: "https://canna_indica.jpg",
   type: "Cannaceae",
   size: "medium to tall",
   hasFlowers: true,
   environment: "outdoor",
-  user: new Types.ObjectId("647083660ca1f98975830b0b"),
   description:
     "Thrives in full sun, well-drained soil, and benefits from regular watering. Known for its large and vibrant flowers that cluster together in inflorescences.",
 };

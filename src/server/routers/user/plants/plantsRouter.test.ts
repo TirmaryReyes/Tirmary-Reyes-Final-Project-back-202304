@@ -63,3 +63,29 @@ describe("Given a DELETE '/:id endpoint'", () => {
     });
   });
 });
+
+describe("Given a POST '/add' endpoint", () => {
+  describe("When it recieve a request with an plant and a new plant data named 'Aloe Vera'", () => {
+    test("Then it should return a statusCode 201 and the new plant with name 'Aloe Vera''", async () => {
+      const expectedStatusCode = 201;
+      const expectedProperty = "plant";
+
+      const response = await request(app)
+        .post("/plants/add")
+        .set("Authorization", `Bearer ${tokenMock}`)
+        .send({
+          name: "Canna indica",
+          image: "https://canna_indica.jpg",
+          type: "Cannaceae",
+          size: "medium to tall",
+          hasFlowers: true,
+          environment: "outdoor",
+          description:
+            "Thrives in full sun, well-drained soil, and benefits from regular watering. Known for its large and vibrant flowers that cluster together in inflorescences.",
+        })
+        .expect(expectedStatusCode);
+
+      expect(response.body).toHaveProperty(expectedProperty);
+    });
+  });
+});

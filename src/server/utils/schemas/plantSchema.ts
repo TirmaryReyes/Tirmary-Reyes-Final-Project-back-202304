@@ -7,7 +7,7 @@ export const createPlantSchema = {
     image: Joi.string().required(),
     type: Joi.string().required(),
     size: Joi.string().required(),
-    hasFlowers: Joi.string().required(),
+    hasFlowers: Joi.boolean().required(),
     environment: Joi.string().required(),
     description: Joi.string().required(),
   }),
