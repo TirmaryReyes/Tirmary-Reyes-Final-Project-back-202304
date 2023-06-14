@@ -1,13 +1,13 @@
-import "../../../../loadEnvironment.js";
+import "../../../loadEnvironment.js";
 import request from "supertest";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import connectToDataBase from "../../../../database/connectToDatabase.js";
+import connectToDataBase from "../../../database/connectToDatabase.js";
 import mongoose from "mongoose";
-import Plant from "../../../../database/models/Plant.js";
-import { app } from "../../../app.js";
-import paths from "../../../utils/paths.js";
-import { tokenMock } from "../../../../mocks/userMocks.js";
-import { plantsMocks } from "../../../../mocks/plantsMocks.js";
+import Plant from "../../../database/models/Plant.js";
+import { app } from "../../app.js";
+import paths from "../../utils/paths.js";
+import { tokenMock } from "../../../mocks/userMocks.js";
+import { plantsMocks } from "../../../mocks/plantsMocks.js";
 
 let server: MongoMemoryServer;
 

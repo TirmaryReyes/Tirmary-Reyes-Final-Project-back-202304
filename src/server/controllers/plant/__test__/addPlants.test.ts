@@ -5,7 +5,7 @@ import { type CustomRequest } from "../../../types";
 import { addPlants } from "../plantsController.js";
 import CustomError from "../../../../CustomError/CustomError.js";
 
-describe("Given a addAnimal controller", () => {
+describe("Given a addPlant controller", () => {
   const next = jest.fn();
 
   const res: Partial<Response> = {

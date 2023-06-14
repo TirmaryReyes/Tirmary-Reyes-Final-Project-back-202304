@@ -16,7 +16,7 @@ export const getPlants = async (
   next: NextFunction
 ) => {
   try {
-    const plants = await Plant.find().limit(10).exec();
+    const plants = await Plant.find().sort({ _id: -1 }).limit(10).exec();
     res.status(200).json({ plants });
   } catch (error) {
     error.message = "Database error connection";
@@ -66,6 +66,28 @@ export const addPlants = async (
     }
 
     res.status(201).json({ plant: newPlant });
+  } catch (error: unknown) {
+    next(error);
+  }
+};
+
+export const getPlant = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  const { idPlant } = req.params;
+
+  try {
+    const plant = await Plant.findById({ _id: idPlant }).exec();
+
+    if (!plant) {
+      const error = new CustomError(404, "Plant not found");
+
+      throw error;
+    }
+
+    return res.status(200).json({ plant });
   } catch (error: unknown) {
     next(error);
   }

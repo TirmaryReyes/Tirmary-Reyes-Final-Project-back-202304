@@ -22,6 +22,10 @@ const plantSchema = new Schema({
     type: Boolean,
     required: true,
   },
+  environment: {
+    type: String,
+    required: true,
+  },
   user: {
     type: Types.ObjectId,
     ref: User,
